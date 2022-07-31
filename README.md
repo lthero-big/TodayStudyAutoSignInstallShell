@@ -1,2 +1,3 @@
 # TodayStudyAutoSignInstallSehll
-只提供TodayStudy一键安装脚本
+TodayStudy installer
+keep low profile ,plz
