@@ -247,6 +247,7 @@ reinstall(){
 main() {
     
     echo -e "—————————————— autoSign脚本 ——————————————"""
+    echo -e "${Green} 项目地址：https://github.com/lthero-big/TodayStudyAutoSignInstallShell ${Font}"
     echo -e "${Green}0.${Font}  安装脚本"
     echo -e "${Green}1.${Font}  修改打卡时间 "
     echo -e "${Green}2.${Font}  修改登录信息 "
