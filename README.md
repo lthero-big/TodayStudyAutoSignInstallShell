@@ -28,7 +28,5 @@ git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd
 Centos/Debian/Ubuntu
 不支持windows
 
-
-
-
 ## keep low profile ,plz
+
