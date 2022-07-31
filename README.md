@@ -1,3 +1,3 @@
-# TodayStudyAutoSignInstallSehll
-## TodayStudy installer
-## keep low profile ,plz
+# TodayStudyAutoSignInstallShell
+* 今日校园打卡一键安装
+* keep low profile ,plz
