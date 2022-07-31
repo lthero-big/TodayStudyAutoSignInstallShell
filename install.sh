@@ -148,24 +148,34 @@ cronCreate() {
     judge "cron 安装完成"
 
     if [[ $(crontab -l | grep -c "autoSign.sh") -lt 1 ]]; then
-      if read -t 10 -p "输入每天几点打卡:" Hour
-	then
-    	echo "每天$Hour点整打卡"
-      else
-    	echo "\n默认10点打卡。"
-      fi
-	if [[ "${ID}" == "Centos" ]]; then
+        if read -t 10 -p "输入每天几点打卡:" Hour
+            then
+                echo "每天$Hour点整打卡"
+            else
+                echo "\n默认10点打卡。"
+        fi
+	    if [[ "${ID}" == "Centos" ]]; then
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/root
         # sed -i "/#/d" /var/spool/cron/root
-	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
-      else
+	        sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
+        else
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/crontabs/root
         # sed -i "/#/d" /var/spool/cron/crontabs/root
-	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
-      fi
-      judge "cron 计划任务更新"
+	        sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
+        fi
+        judge "cron 计划任务更新"
+    else
+        echo -e "${Red}cron 计划任务已经存在，未重新创建，是否要修改打卡时间?${Font}"
+        echo -e "${Green}1.${Font}  是 "
+        echo -e "${Green}2.${Font}  否"
+        read -rp "请输入数字：" cgCron
+        if [ $cgCron -eq 1 ];then
+            cronUpdate
+        else
+            echo "未修改打卡时间"
+        fi
     fi
     
 }
@@ -218,7 +228,15 @@ reinstall(){
       fi
       judge "cron 任务删除完成"
     fi
-    rm -r $project_dir
+    echo "是否保留日志?"
+    echo -e "${Green}1.${Font}  保留 "
+    echo -e "${Green}2.${Font}  不保留"
+    read -rp "请输入数字：" iskeepLog
+    if [ $iskeepLog -eq 1 ];then
+        rm -r $project_dir
+    else
+        rm -r $conf_dir
+    fi
     judge "项目删除完成"
 }
 
