@@ -1,4 +1,4 @@
-# TodayStudyAutoSignInstallShell
+# 今日校园打卡-一键部署
 
 ## 此脚本实现的功能
 一键完成以下内容
@@ -17,5 +17,6 @@ git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd
 ```
 ## 支持平台
 Centos/Debian/Ubuntu
+不支持windows
 
 ## keep low profile ,plz
