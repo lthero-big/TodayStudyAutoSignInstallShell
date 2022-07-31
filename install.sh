@@ -187,10 +187,6 @@ cronUpdate() {
       judge "cron 计划任务更新"
     fi
 }
-infoUpdate(){
-    echo "信息配置文件位置:${project_dir}/config.yml"
-    echo "具体如何配置请查看:${project_dir}/config_demo.yml"
-}
 
 installMain(){
     checkSystem
@@ -204,13 +200,33 @@ installMain(){
     echo -e "${Green}—————————————— 脚本运行完成 ——————————————${Font}"
 }
 
+infoUpdate(){
+    echo "信息配置文件位置:${project_dir}/config.yml"
+    echo "命令：vim ${project_dir}/config.yml"
+    echo "具体如何配置请查看:${project_dir}/config_demo.yml"
+    echo "命令：vim ${project_dir}/config_demo.yml"
+}
+
+reinstall(){
+    if [[ $(crontab -l | grep -c "autoSign.sh") -eq 1 ]]; then
+	    if [[ "${ID}" == "Centos" ]]; then
+            sed -i '/autoSign.sh/d' /var/spool/cron/root
+            
+        else
+	        sed -i '/autoSign.sh/d' /var/spool/cron/crontabs/root
+      fi
+      judge "cron 任务删除完成"
+    fi
+}
+
 main() {
     
     echo -e "—————————————— autoSign脚本 ——————————————"""
     echo -e "${Green}0.${Font}  安装脚本"
     echo -e "${Green}1.${Font}  修改打卡时间 "
     echo -e "${Green}2.${Font}  修改登录信息 "
-    echo -e "${Green}3.${Font}  退出 \n"
+    echo -e "${Green}3.${Font}  卸载 "
+    echo -e "${Green}4.${Font}  退出 \n"
 
     read -rp "请输入数字：" menu_num
     case $menu_num in
@@ -224,6 +240,9 @@ main() {
         infoUpdate
         ;;
     3)
+        reinstall
+        ;;
+    4)
         exit 0
         ;;
     *)
