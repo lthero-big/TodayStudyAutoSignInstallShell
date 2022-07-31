@@ -25,8 +25,9 @@ git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd
 * 2 输入定时打卡的时间
 
 ## 运行平台
-Centos/Debian/Ubuntu
-不支持windows
+* Centos/Debian/Ubuntu
+本人在ubuntu 18,20版本都测试过，安装成功，只要修改下config文件即可
+* 不支持windows
 
 ## keep low profile ,plz
 
