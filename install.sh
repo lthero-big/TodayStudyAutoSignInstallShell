@@ -91,9 +91,8 @@ dirCreate() {
 evenmentCreate(){
     ${INS} -y install python3-pip
     judge "python3-pip安装完成"
-    sleep 1
-    #cd ${project_dir}
-    #$(pip3 install -r ./requirements.txt )
+    cd ${project_dir}
+    /usr/bin/pip3 install -r /home/autoSign/TodayStudyAutoSign/requirements.txt
     judge "环境已经安装完毕"
 }
 cronCreate() {
