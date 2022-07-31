@@ -1,3 +1,3 @@
 # TodayStudyAutoSignInstallSehll
-##TodayStudy installer
-##keep low profile ,plz
+## TodayStudy installer
+## keep low profile ,plz
