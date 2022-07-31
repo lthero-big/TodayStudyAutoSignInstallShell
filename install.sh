@@ -157,16 +157,17 @@ cronCreate() {
 	if [[ "${ID}" == "Centos" ]]; then
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/root
-        # sed -i '/#/d' /var/spool/cron/root
+        # sed -i "/#/d" /var/spool/cron/root
 	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
       else
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/crontabs/root
-        # sed -i '/#/d' /var/spool/cron/crontabs/root
+        # sed -i "/#/d" /var/spool/cron/crontabs/root
 	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
       fi
+      judge "cron 计划任务更新"
     fi
-    judge "cron 计划任务更新"
+    
 }
 cronUpdate() {
     if [[ $(crontab -l | grep -c "autoSign.sh") -eq 1 ]]; then
@@ -177,13 +178,15 @@ cronUpdate() {
 	    Hour=10
         fi
 	    if [[ "${ID}" == "Centos" ]]; then
-            sed -i '/autoSign.sh/d' /var/spool/cron/root
+            sed -i "/autoSign.sh/d" /var/spool/cron/root
             sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
         else
-            sed -i '/autoSign.sh/d' /var/spool/cron/crontabs/root
+            sed -i "/autoSign.sh/d" /var/spool/cron/crontabs/root
 	        sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
-      fi
-      judge "cron 计划任务更新"
+        fi
+        judge "cron 计划任务更新"
+    else
+        echo "未发现自动打卡的cron 任务"
     fi
 }
 
@@ -210,12 +213,13 @@ reinstall(){
     if [[ $(crontab -l | grep -c "autoSign.sh") -eq 1 ]]; then
 	    if [[ "${ID}" == "Centos" ]]; then
             sed -i '/autoSign.sh/d' /var/spool/cron/root
-            
         else
 	        sed -i '/autoSign.sh/d' /var/spool/cron/crontabs/root
       fi
       judge "cron 任务删除完成"
     fi
+    rm -r $project_dir
+    judge "项目删除完成"
 }
 
 main() {
