@@ -11,6 +11,11 @@
 * 若离
 
 ## 使用方法
+* 目前国内的云函数、云服务器都无法部署，因为今日校园登录时会检测ip，**国内云服务器提供商的ip**会被禁用。
+* 但国外云服务器可用，目前对学生最友好的是，微软云Azure，可以根据自己学校邮箱领取一年免费云服务器。
+* 如果学校邮箱无法使用，可以上淘宝买个微软云账号，或着DigitalOcean的代金卷【DigitalOcean的号需要信用卡或paypal注册】
+
+
 复制命令并运行
 ```
 git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd TodayStudyAutoSignInstallShell && chmod +x install.sh && ./install.sh
@@ -18,5 +23,8 @@ git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd
 ## 运行平台
 Centos/Debian/Ubuntu
 不支持windows
+
+
+
 
 ## keep low profile ,plz
