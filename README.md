@@ -15,7 +15,7 @@
 ```
 git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd TodayStudyAutoSignInstallShell && chmod +x install.sh && ./install.sh
 ```
-## 支持平台
+## 运行平台
 Centos/Debian/Ubuntu
 不支持windows
 
