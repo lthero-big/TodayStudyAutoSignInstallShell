@@ -15,11 +15,15 @@
 * 但国外云服务器可用，目前对学生最友好的是，微软云Azure，可以根据自己学校邮箱领取一年免费云服务器。
 * 如果学校邮箱无法使用，可以上淘宝买个微软云账号，或着DigitalOcean的代金卷【DigitalOcean的号需要信用卡或paypal注册】
 
-
-复制命令并运行
+拥有云服务器后，复制下面命令并运行
 ```
 git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd TodayStudyAutoSignInstallShell && chmod +x install.sh && ./install.sh
 ```
+
+中途有几个需要输入的地方
+* 1 同时时区
+* 2 输入定时打卡的时间
+
 ## 运行平台
 Centos/Debian/Ubuntu
 不支持windows
