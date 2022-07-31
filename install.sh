@@ -157,12 +157,12 @@ cronCreate() {
 	if [[ "${ID}" == "Centos" ]]; then
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/root
-        sed -i "1,3d" /var/spool/cron/root
+        sed -i '/#/d' /var/spool/cron/root
 	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
       else
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
           #        &> /dev/null" /var/spool/cron/crontabs/root
-        sed -i "1,3d" /var/spool/cron/crontabs/root
+        sed -i '/#/d' /var/spool/cron/crontabs/root
 	    sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
       fi
     fi
@@ -176,12 +176,11 @@ cronUpdate() {
             echo "超时未输入，默认10点打卡。"
 	    Hour=10
         fi
-
 	    if [[ "${ID}" == "Centos" ]]; then
-            sed -i '1d' /var/spool/cron/root
+            sed -i '/autoSign.sh/d' /var/spool/cron/root
             sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/root
         else
-            sed -i '1d' /var/spool/cron/crontabs/root
+            sed -i '/autoSign.sh/d' /var/spool/cron/crontabs/root
 	        sed -i "1i 0 ${Hour} * * * ${conf_dir}/autoSign.sh >> ${conf_dir}/autoSignLog 2>&1" /var/spool/cron/crontabs/root
       fi
       judge "cron 计划任务更新"
