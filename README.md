@@ -22,7 +22,7 @@ git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd
 
 中途有几个需要输入的地方
 * 1 同时时区，输入y
-* 2 输入定时打卡的时间，输入数字【24进制】
+* 2 输入定时打卡的时间，输入数字【24进制】，只支持整点打卡，如10点整，11点整
 
 ## 运行平台
 * Centos/Debian/Ubuntu
