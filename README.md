@@ -4,4 +4,7 @@
 * keep low profile ,plz
 
 ## 使用方法
-* git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git & cd TodayStudyAutoSignInstallShell & chmod +x install.sh & ./install.sh
+复制命令并运行
+```
+git clone https://github.com/lthero-big/TodayStudyAutoSignInstallShell.git && cd TodayStudyAutoSignInstallShell && chmod +x install.sh && ./install.sh
+```
