@@ -152,7 +152,7 @@ cronCreate() {
             then
                 echo "每天$Hour点整打卡"
             else
-                echo "\n默认10点打卡。"
+                echo "输入超时，默认10点打卡。"
         fi
 	    if [[ "${ID}" == "Centos" ]]; then
             cat >>/var/spool/cron/root <<EOF
