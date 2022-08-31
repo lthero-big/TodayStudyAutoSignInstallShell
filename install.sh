@@ -27,13 +27,13 @@ judge() {
     fi
 }
 checkSystem() {
-    if [[ "${ID}" == "Centos" && ${VERSION_ID} -ge 7 ]]; then
+    if [[ ("${ID}" == "Centos" || "${ID}" == "centos") && ${VERSION_ID} -ge 7 ]]; then
         echo -e "${OK} ${GreenBG} 当前系统为 Centos ${VERSION_ID} ${VERSION} ${Font}"
         INS="yum"
-    elif [[ "${ID}" == "Debian" && ${VERSION_ID} -ge 8 ]]; then
+    elif [[ ("${ID}" == "Debian" || "${ID}" == "debian") && ${VERSION_ID} -ge 8 ]]; then
         echo -e "${OK} ${GreenBG} 当前系统为 Debian ${VERSION_ID} ${VERSION} ${Font}"
         INS="apt"
-    elif [[ "${ID}" == "Ubuntu" && $(echo "${VERSION_ID}" | cut -d '.' -f1) -ge 16 ]]; then
+    elif [[ ("${ID}" == "ubuntu" || "${ID}" == "Ubuntu") && $(echo "${VERSION_ID}" | cut -d '.' -f1) -ge 16 ]]; then
         echo -e "${OK} ${GreenBG} 当前系统为 Ubuntu ${VERSION_ID} ${UBUNTU_CODENAME} ${Font}"
         INS="apt"
         rm /var/lib/dpkg/lock
@@ -41,8 +41,10 @@ checkSystem() {
         rm /var/lib/apt/lists/lock
         rm /var/cache/apt/archives/lock
     else
-        echo -e "${Error} ${RedBG} 当前系统为 ${ID} ${VERSION_ID} 不在支持的系统列表内，安装中断 ${Font}"
-        exit 1
+        echo -e "${OK} ${GreenBG} 默认使用apt安装 ${Font}"
+	    INS="apt"
+        #echo -e "${Error} ${RedBG} 当前系统为 ${ID} ${VERSION_ID} 不在支持的系统列表内，安装中断 ${Font}"
+        #exit 1
     fi
 }
 
